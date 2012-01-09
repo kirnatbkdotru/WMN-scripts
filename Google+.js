@@ -8,7 +8,7 @@ var ver	 = "2011-09-10";
 function init(){
 	this.initStage=ST_PRE;
 	this.dataURL	= "https://plus.google.com/u/0/_/n/guc";
-	this.loginData	= ["https://www.google.com/accounts/ServiceLoginAuth",
+	this.loginData	= ["https://accounts.google.com/accounts/ServiceLoginAuth",
                     "Email", "Passwd",
                     "continue=" + encodeURIComponent(this.dataURL)];
 	this.mailURL	= "https://plus.google.com/u/0/notifications/all";
@@ -21,7 +21,7 @@ function getIconURL(){
 function process(aHttpChannel, aData) {
   switch(this.stage){
   case ST_PRE:
-	this.getHtml("https://www.google.com/accounts/ServiceLoginAuth");
+	this.getHtml("https://accounts.google.com/accounts/ServiceLoginAuth");
     return false;
   case ST_PRE_RES:
     var fnd=aData.match(/GALX[\s\S]+?value=\"(\S+?)\"/);
