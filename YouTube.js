@@ -8,11 +8,11 @@ var ver	 = "2011-09-08";
 function init(){
 	this.initStage	= ST_PRE;
 	this.dataURL	= "http://www.youtube.com/";
-	this.loginData	= ["https://www.google.com/accounts/ServiceLoginAuth",
+	this.loginData	= ["https://accounts.google.com/ServiceLoginAuth",
                     "Email", "Passwd",
 					"service=youtube&"+
 					"continue=" + encodeURIComponent("http://www.youtube.com/signin?action_handle_signin=true")];
-	this.mailURL	= "http://www.youtube.com/inbox#inbox";
+	this.mailURL	= "http://www.youtube.com/inbox";
 }
 
 function process(aHttpChannel, aData) {
@@ -37,6 +37,6 @@ function getIconURL(){
 }
 
 function getCount(aData){
-	var fnd = aData.match(/<img class="master-sprite.+?(\d+)<\/a>/);
-	return fnd?(fnd[1]):0;
+	var fnd = aData.match(/messages[\s\S]+?(\((\d+)\))?</);
+	return fnd?(fnd[2]?fnd[2]:0):0;
 	}
