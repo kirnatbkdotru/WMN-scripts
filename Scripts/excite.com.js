@@ -9,7 +9,7 @@ function init(){
   this.initStage=ST_PRE;
   this.loginData=["https://registration.excite.com/excitereg/login_process.jsp","membername"];
   this.dataURL="http://webmail.excite.com";  
-  this.mailURL="http://webmail.excite.com";
+  this.viewURL="http://webmail.excite.com";
 }
 function getIconURL(){
   return "http://imgfarm.com/ex/excite.ico";
@@ -22,7 +22,7 @@ function getCount(aData){
     return -1;
   }
 }
-function process(aHttpChannel, aData) {
+function process(aData,aHttp) {
   switch(this.stage){
   case ST_PRE:
     this.getHtml("https://registration.excite.com/excitereg/btlogin.jsp?app=bt&return_url=https%253A%252F%252Fwebmail.excite.com%252Fcgi-bin%252Flogin_sso.cgi");
@@ -61,7 +61,7 @@ function process(aHttpChannel, aData) {
   case ST_LOGIN_RES+1:
     var fnd=aData.match(/replace\("(\S+?)"/);
     if(fnd){
-      this.mailURL=fnd[1];
+      this.viewURL=fnd[1];
       var fnd2=fnd[1].match(/(\?\S+?)\&save_unm/);
       if(fnd2){
         this.dataURL="http://webmail.excite.com/cgi-bin/emailGetFolderTree.fcg"+fnd2[1]+"&gds=1&format=json";
@@ -70,7 +70,7 @@ function process(aHttpChannel, aData) {
     }
     break;
   }
-  return this.baseProcess(aHttpChannel, aData);
+  return this.baseProcess(aData,aHttp);
 }
 
 

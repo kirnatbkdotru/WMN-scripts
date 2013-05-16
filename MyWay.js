@@ -3,18 +3,18 @@
   @author: Kiryanov Nikolay kirn@bk.ru
 **********************************************************/
 var name="MyWay";
-var ver="2011-10-05";
+var ver="2013-05-17";
 
 function init() {
 	this.initStage=ST_PRE; 
 	this.loginData=["http://registration.myway.com/login_process.jsp","membername",,"jerror=none&perm=1&permchk=1&gofer=Sign+In%21"];
-	this.mailURL="http://my.myway.com/email_redir.jsp";
+	this.viewURL="http://my.myway.com/email_redir.jsp";
 }
 function getCount(aData) {
 	return JSON.parse(aData).data.f[0].n;
 }
 
-function process(aHttpChannel, aData) {
+function process(aData,aHttp) {
 	switch(this.stage){
 		case ST_PRE:
 
@@ -63,7 +63,7 @@ function process(aHttpChannel, aData) {
 				this.stage 		= ST_DATA;
             }
 	}
-  return this.baseProcess(aHttpChannel, aData);
+  return this.baseProcess(aData, aHttp);
 }
 
 function getIconURL(){
