@@ -9,16 +9,16 @@ var hostString="mail.ru";
 function init() {
     var ar=this.user.split("@");
     if(!ar[1])ar[1]="mail.ru";
-    this.dataURL="http://swa.mail.ru/cgi-bin/counters";
+    this.dataURL="https://e.mail.ru/cgi-bin/msglist";
     this.loginData=["https://e.mail.ru/cgi-bin/auth",,"Password","Login="+encodeURIComponent(ar[0])+"&Domain="+encodeURIComponent(ar[1])];
-    this.mailURL="http://e.mail.ru/cgi-bin/msglist";
+    this.viewURL="https://e.mail.ru/cgi-bin/msglist";
+    this.cookieDomain="mail.ru";
 }
 function getCount(aData) {
-	var jdata = JSON.parse(aData);
-	if (jdata.status == "ok") return jdata.data.mail_cnt;
-	return -1;
+    var fnd = aData.match(/g_mail_events.+?(\d+)<\/i>/);
+    return fnd?(fnd[1]?fnd[1]:0):-1;
 }
 
 function getIconURL(){
-	return "http://img.imgsmail.ru/r/ru/favicon.ico?1";
+    return "http://img.imgsmail.ru/r/ru/favicon.ico?1";
 }
