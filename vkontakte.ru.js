@@ -3,7 +3,7 @@
 @author: Kiryanov Nikolay kirn@bk.ru
 **********************************************************/
 var name="vkontakte.ru";
-var ver="2031-06-01";
+var ver="2013-06-01";
 
 function init() {
 	this.loginData=["http://login.vk.com/?act=login","email","pass"];
